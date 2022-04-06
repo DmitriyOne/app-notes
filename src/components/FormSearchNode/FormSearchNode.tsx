@@ -1,17 +1,27 @@
 import * as React from 'react';
 
-import styles from './form.module.scss'
+import { Input } from '../Input';
 
-interface IProps {
-  onSubmit?: () => void
-}
+export const FormSearchNode: React.FunctionComponent = () => {
+  let [value, setValue] = React.useState('')
 
-export const FormSearchNode: React.FunctionComponent<IProps> = ({ 
-  onSubmit,
- }) => {
+  const handlerValue = (event: { target: HTMLInputElement }) => {
+    setValue(event.target.value)
+  }
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
-    <>
-    
-    </>
+    <form onSubmit={onSubmit}>
+      <Input
+        type='text'
+        label='Search note'
+        id='search'
+        value={value}
+        onChange={handlerValue}
+      />
+    </form>
   )
 };

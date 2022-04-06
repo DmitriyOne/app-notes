@@ -7,14 +7,20 @@ import styles from './note.module.scss';
 interface IProps {
   notes: IFirebaseNote[]
   onRemove?: (id: string) => void
+  valueTitle?: string
 }
 
 export const Note: FunctionComponent<IProps> = ({
   notes,
-  onRemove
+  onRemove,
+  valueTitle = '',
 }) => (
   <ul className={styles.component}>
-    {notes.map((note, idx) => {
+    {notes.filter(note => {
+      return (
+        note.title!.toLowerCase().includes(valueTitle!.toLowerCase())
+      )
+    }).map((note, idx) => {
       return (
         <li
           key={idx + 1}

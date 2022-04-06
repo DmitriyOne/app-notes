@@ -10,6 +10,14 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
   const [loader, setLoader] = useState(false)
   const [notNote, setnotNotes] = useState(false)
   const [items, setItems] = useState(notes)
+  // const [value, setValue] = useState(valueSearch)
+
+  // const filterN = items.filter(note => {
+  //   return note.title?.toLowerCase() !== value?.toLowerCase()
+  // })
+
+  // console.log(filterN);
+
 
   const fetchNotes = async () => {
     setLoader(true)
@@ -37,16 +45,22 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
       id: note.id = res.data.name,
       date: note.date
     }
+    items.push(newNote)
     setLoader(false)
     setnotNotes(false)
-    items.push(newNote)
   }
 
   const removeNote = async (id: string) => {
     await axios.delete(`${url}/notes/${id}.json`)
-    const filterNotes = items.filter(note => note.id !== id)
-    setItems(filterNotes)
+    const removeNotes = items.filter(note => note.id !== id)
+    setItems(removeNotes)
   }
+
+  // const filterNote = async (title: string) => {
+  //   const filterNotes = items.filter(note => note.title?.toLowerCase().trim().includes(title.toLowerCase().trim()))
+  //   setItems(filterNotes)
+  //   console.log('items: ', items);
+  // }
 
   return (
     <FirebaseContext.Provider value={{
@@ -56,6 +70,7 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
       fetch: fetchNotes,
       add: addNote,
       remove: removeNote,
+      // filter: filterNote
     }}>
       {children}
     </FirebaseContext.Provider>

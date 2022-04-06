@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { FormCreateNote, Input, NoteList } from './components';
+import { FormCreateNote, FormSearchNode, NoteList } from './components';
 import { AlertContext } from './context';
 
 const Home: React.FunctionComponent = () => {
@@ -14,11 +14,7 @@ const Home: React.FunctionComponent = () => {
           <FormCreateNote />
         </div>
         <div className="col">
-          <Input
-            type='text'
-            label='Search note'
-            id='search'
-          />
+          <FormSearchNode />
         </div>
       </section>
       <hr className='hr' />

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import moment from 'moment';
 
 import { Input } from '../../components';
 import { AlertContext, FirebaseContext } from '../../context';
@@ -25,7 +26,7 @@ export const FormCreateNote: React.FunctionComponent = () => {
     if (value.trim()) {
       const note = {
         title: value,
-        date: new Date().toDateString()
+        date: moment().format('MM/YY, h:mm:ss')
       }
       add!(note)
       show!('Заметка была создана', 'green')

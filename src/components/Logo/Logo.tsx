@@ -19,7 +19,7 @@ export const Logo: React.FunctionComponent<IProps> = ({
   return (
     <>
       <h1 className={className}>
-        React Notes
+        React Note
       </h1>
     </>
   )

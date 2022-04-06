@@ -1,0 +1,90 @@
+@use './styles/colors.scss';
+@use './styles/mixins.scss';
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  color: colors.$black;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background-color: transparent;
+}
+
+.container {
+  @include mixins.fluidMaxSize(1080);
+  margin: 0 auto;
+}
+
+.title-h1 {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.main {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.form-section {
+  @include mixins.flex-spb;
+}
+
+.col {
+  flex-basis: 400px;
+  margin: 0 50px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.hr {
+  margin: 50px 0;
+}
+
+.notes-section {
+
+}

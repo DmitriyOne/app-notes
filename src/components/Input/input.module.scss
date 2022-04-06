@@ -1,0 +1,42 @@
+@use '../../styles/colors.scss';
+
+.component {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  font-size: 16px;
+  color: colors.$black;
+  border: 1px solid colors.$gray;
+  padding: 15px 20px;
+  border-radius: 10px;
+
+  &:focus {
+    border-color: colors.$yellowBlack;
+
+    &+label {
+      color: colors.$yellowBlack;
+      top: 0;
+    }
+  }
+}
+
+.label {
+  color: colors.$gray;
+  font-size: 14px;
+  text-transform: uppercase;
+  position: absolute;
+  left: 15px;
+  top: 0;
+  padding: 0 5px;
+  background: colors.$white;
+  transition: all 100ms ease;
+  transform: translateY(-50%);
+
+}
+
+.labelCenter {
+  top: 50%;
+}

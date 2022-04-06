@@ -1,0 +1,13 @@
+@use '../../styles/colors.scss';
+@use '../../styles/mixins.scss';
+
+.component {
+  width: 100%;
+  padding: 0 20px;
+  background: linear-gradient(to bottom right, #F7C80E, #E2C72C);
+}
+
+.row {
+  @include mixins.flex-spb;
+}
+

@@ -1,0 +1,16 @@
+@use '../../styles/colors.scss';
+@use '../../styles/mixins.scss';
+
+.menu {
+  @include mixins.flex-spb;
+}
+
+.menuItem {
+  padding: 0 10px;
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
+}

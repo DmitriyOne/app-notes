@@ -1,0 +1,11 @@
+@use '../../styles/colors.scss';
+
+.link {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px 15px;
+  &.active {
+    background-color: colors.$yellowBlack;
+  }
+}

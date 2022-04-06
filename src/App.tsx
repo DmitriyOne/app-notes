@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
+import About from './About';
+import Home from './Home';
+
+import { AlertContextProvider, FirebaseContext, FirebaseContextProvider } from './context';
+
+import { Footer, Header } from './components';
+import { ROUTES } from './constants/index';
+
+const App: React.FunctionComponent = () => {
+  const { notes } = React.useContext(FirebaseContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <FirebaseContextProvider notes={notes}>
+      <AlertContextProvider>
+        <BrowserRouter>
+          <Header />
+          <main className='main'>
+            <Routes>
+              <Route path={ROUTES.HOME} element={<Home />} />
+              <Route path={ROUTES.ABOUT_US} element={<About />} />
+            </Routes>
+          </main>
+          <Footer />
+        </BrowserRouter>
+      </AlertContextProvider>
+    </FirebaseContextProvider>
+  )
+};
 
 export default App;

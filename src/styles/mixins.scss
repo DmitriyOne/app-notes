@@ -1,0 +1,46 @@
+@mixin media-w($width) {
+  @media only screen and (max-width: ($width+ "px") ) {
+    @content
+  }
+};
+
+@mixin media-h($height) {
+  @media only screen and (max-height: ($height + "px")) {
+    @content
+  }
+};
+
+@mixin cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+};
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center
+};
+
+@mixin flex-spb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+};
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+};
+
+@mixin square-size($size) { 
+  width: $size + px; 
+  height: $size + px;
+}
+
+@mixin fluidMaxSize($size, $property: width) {
+  #{$property}: 100%;
+	max-#{$property}: $size + px;
+}

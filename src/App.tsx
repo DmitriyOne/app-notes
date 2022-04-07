@@ -6,12 +6,11 @@ import Home from './Home';
 
 import { AlertContextProvider, FirebaseContext, FirebaseContextProvider, SearchContextPropvider } from './context';
 
-import { Footer, Header } from './components';
 import { ROUTES } from './constants/index';
+import { Footer, Header } from './components';
 
 const App: React.FunctionComponent = () => {
   const { notes } = React.useContext(FirebaseContext)
-
   return (
     <SearchContextPropvider>
       <FirebaseContextProvider notes={notes}>

@@ -8,7 +8,6 @@ const url = process.env.REACT_APP_DB_URL
 
 export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ children, notes }) => {
   const [loader, setLoader] = useState(false)
-  const [notNote, setnotNotes] = useState(false)
   const [items, setItems] = useState(notes)
 
   const fetchNotes = async () => {
@@ -16,7 +15,6 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
     const res = await axios.get(`${url}/notes.json`)
     if (res.data === null) {
       setLoader(false)
-      setnotNotes(true)
     } else {
       const notesArray = Object.keys(res.data).map(key => {
         return {
@@ -33,13 +31,11 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
   const addNote = async (note: IFirebaseNote) => {
     const res = await axios.post(`${url}/notes.json`, note)
     const newNote = {
-      title: note.title,
-      id: note.id = res.data.name,
-      date: note.date
+      ...note,
+      id: res.data.name
     }
-    items.push(newNote)
+    setItems([...items, newNote])
     setLoader(false)
-    setnotNotes(false)
   }
 
   const removeNote = async (id: string) => {
@@ -52,7 +48,6 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
     <FirebaseContext.Provider value={{
       loading: loader,
       notes: items,
-      noNotes: notNote,
       fetch: fetchNotes,
       add: addNote,
       remove: removeNote,

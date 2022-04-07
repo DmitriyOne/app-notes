@@ -7,7 +7,6 @@ export interface IFirebaseNote {
 export interface IFirebase {
   loading?: boolean
   notes: IFirebaseNote[]
-  noNotes?: boolean
   fetch?: () => void
   add?: (note: IFirebaseNote) => void
   remove?: (id: string) => void

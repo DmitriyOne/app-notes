@@ -1,26 +1,38 @@
 import * as React from 'react';
 
 import { Loader, NoNotes, Note } from '../../components';
-import { FirebaseContext } from '../../context';
+import { FirebaseContext, SearchContext } from '../../context';
 
 export const NoteList: React.FunctionComponent = () => {
-  const { loading, notes, fetch, remove, noNotes } = React.useContext(FirebaseContext)
+  const { loading, fetch, notes, remove } = React.useContext(FirebaseContext)
+  const { value } = React.useContext(SearchContext)
+  const [notNote, setNotNote] = React.useState(false)
 
   React.useEffect(() => {
     fetch!()
-    console.log('Load home');
   }, [])
+
+  React.useEffect(() => {
+    if (notes.length === 0) {
+      setNotNote(true)
+    } else {
+      setNotNote(false)
+    }
+  }, [notes])
 
   return (
     <>
       {loading
         && <Loader />
       }
-      {noNotes
+      {notNote
         && <NoNotes />
       }
-      <Note notes={notes} onRemove={remove} />
-
+      <Note
+        notes={notes}
+        onRemove={remove}
+        valueTitle={value}
+      />
     </>
   )
 };

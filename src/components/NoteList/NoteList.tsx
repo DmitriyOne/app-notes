@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 import { Loader, NoNotes, Note } from '../../components';
-import { FirebaseContext } from '../../context';
+import { FirebaseContext, SearchContext } from '../../context';
 
 export const NoteList: React.FunctionComponent = () => {
   const { loading, fetch, notes, remove, noNotes } = React.useContext(FirebaseContext)
+  const { value } = React.useContext(SearchContext)
 
   React.useEffect(() => {
     fetch!()
@@ -21,7 +22,7 @@ export const NoteList: React.FunctionComponent = () => {
       <Note
         notes={notes}
         onRemove={remove}
-        valueTitle={''}
+        valueTitle={value}
       />
     </>
   )

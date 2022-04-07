@@ -11,6 +11,4 @@ export interface IFirebase {
   fetch?: () => void
   add?: (note: IFirebaseNote) => void
   remove?: (id: string) => void
-  filter?: (title: string) => void
-  valueSearch?: string
 }

@@ -1,13 +1,10 @@
 import * as React from 'react';
+import { SearchContext } from '../../context';
 
 import { Input } from '../Input';
 
 export const FormSearchNode: React.FunctionComponent = () => {
-  let [value, setValue] = React.useState('')
-
-  const handlerValue = (event: { target: HTMLInputElement }) => {
-    setValue(event.target.value)
-  }
+  const { value, handlerValue } = React.useContext(SearchContext)
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -19,7 +16,7 @@ export const FormSearchNode: React.FunctionComponent = () => {
         type='text'
         label='Search note'
         id='search'
-        value={value}
+        value={value || ''}
         onChange={handlerValue}
       />
     </form>

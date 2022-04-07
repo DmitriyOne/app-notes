@@ -1,5 +1,5 @@
-@use './styles/colors.scss';
 @use './styles/mixins.scss';
+@import './styles/colors.css';
 
 *,
 *:before,
@@ -16,7 +16,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
-  color: colors.$black;
+  color: var(---text);
+  background-color: var(---bg);
+  @include mixins.theme(all);
 }
 
 code {
@@ -85,6 +87,4 @@ button {
   margin: 50px 0;
 }
 
-.notes-section {
-
-}
+.notes-section {}

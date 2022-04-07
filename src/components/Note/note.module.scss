@@ -1,4 +1,3 @@
-@use '../../styles/colors.scss';
 @use '../../styles/mixins.scss';
 
 .component {
@@ -14,10 +13,14 @@
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
-  border: 2px solid colors.$yellowMedium;
+  border: 2px solid var(---itemBorder);
   margin-bottom: 30px;
   border-radius: 20px;
-  background-color: colors.$yellowLight;
+  background-color: var(---itemBg);
+  color: var(---textBlack);
+  transition:
+    border-color .4s,
+    background-color .4s;
 
   &:last-child {
     margin-bottom: 0;
@@ -42,5 +45,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  fill: colors.$red;
+  fill: var(---itemDeletSvg);
+  @include mixins.theme(fill)
 }

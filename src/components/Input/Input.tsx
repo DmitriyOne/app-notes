@@ -9,7 +9,9 @@ interface IProps {
   placeholder?: string
   id?: string
   value?: string
-  onChange?: (event: { target: HTMLInputElement}) => void
+  onChange?: (event: { target: HTMLInputElement }) => void
+  inputSize?: 'l' | 'auto'
+  componentClassName?: string
 }
 
 export const Input: FunctionComponent<IProps> = ({
@@ -18,24 +20,24 @@ export const Input: FunctionComponent<IProps> = ({
   placeholder,
   id,
   value,
-  onChange
+  onChange,
+  componentClassName,
+  inputSize = 'l',
 }) => {
-  // const [value, setValue] = useState('')
-
-  // const handleValue = (event: { target: HTMLInputElement; }) => {
-  //   setValue(event.target.value)
-  // }
-
   const labelClassName = classNames(styles.label, {
     [styles.labelCenter]: value === ''
+  })
+  const inputClassName = classNames(styles.input, {
+    [styles.inputL]: inputSize === 'l',
+    [styles.inputAuto]: inputSize === 'auto',
   })
 
   return (
     <>
-      <div className={styles.component}>
+      <div className={classNames(styles.component, componentClassName)}>
         <input
           id={id}
-          className={styles.input}
+          className={inputClassName}
           type={type}
           placeholder={placeholder}
           onChange={onChange}

@@ -1,0 +1,8 @@
+@use '../../styles/mixins.scss';
+
+.component {
+  width: 100%;
+  max-width: 100px;
+  display: flex;
+  justify-content: flex-end;
+}

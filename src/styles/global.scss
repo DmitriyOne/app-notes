@@ -1,5 +1,4 @@
 @use 'mixins';
-@use 'colors';
 
 *,
 *:before,
@@ -16,7 +15,7 @@ body {
   overflow-x: hidden;
   font-family: 'HelveticaNeueCyr-400', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  color: colors.$white;
+  color: var(---bg);
   font-size: 14px;
   height: 100%;
 }

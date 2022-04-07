@@ -8,9 +8,11 @@ import { AlertContextProvider, FirebaseContext, FirebaseContextProvider, SearchC
 
 import { ROUTES } from './constants/index';
 import { Footer, Header } from './components';
+import { useTheme } from './hooks';
 
 const App: React.FunctionComponent = () => {
   const { notes } = React.useContext(FirebaseContext)
+  const { theme, setTheme } = useTheme()
   return (
     <SearchContextPropvider>
       <FirebaseContextProvider notes={notes}>

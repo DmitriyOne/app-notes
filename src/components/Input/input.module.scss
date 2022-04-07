@@ -1,40 +1,49 @@
-@use '../../styles/colors.scss';
+@use '../../styles/mixins.scss';
 
 .component {
   position: relative;
-  width: 100%;
 }
 
 .input {
-  width: 100%;
   font-size: 16px;
-  color: colors.$black;
-  border: 1px solid colors.$gray;
+  color: var(---text);
+  border: 1px solid var(---gray);
+  @include mixins.theme(all);
   padding: 15px 20px;
   border-radius: 10px;
 
   &:focus {
-    border-color: colors.$yellowBlack;
+    border-color: var(---yellow);
 
     &+label {
-      color: colors.$yellowBlack;
+      color: var(---yellow);
       top: 0;
     }
   }
 }
 
+.inputL {
+  width: 100%;
+}
+
+.inputAuto {
+  width: auto;
+}
+
 .label {
-  color: colors.$gray;
+  color: var(---gray);
   font-size: 14px;
   text-transform: uppercase;
   position: absolute;
   left: 15px;
   top: 0;
   padding: 0 5px;
-  background: colors.$white;
-  transition: all 100ms ease;
+  background: var(---bg);
   transform: translateY(-50%);
-
+  transition:
+    background-color .4s,
+    color .4s,
+    top .1s
 }
 
 .labelCenter {

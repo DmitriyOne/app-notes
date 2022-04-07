@@ -1,4 +1,3 @@
-@use '../../styles/colors.scss';
 @use '../../styles/mixins.scss';
 
 .alert {
@@ -15,34 +14,18 @@
 .text {
   display: block;
   font-size: 16px;
-  color: colors.$black;
+  color: var(---textBlack);
   padding-top: 5px;
 }
 
-.close {
-  @include mixins.square-size(25);
-  background-color: colors.$red;
-  border-radius: 5px;
-  padding: 3px 4px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.closeIcon {
-  width: 100%;
-  height: 100%;
-}
-
 .green {
-  background-color: colors.$green;
+  background-color: var(---green);
 }
 
 .red {
-  background-color: colors.$redLight;
+  background-color: var(---red);
 }
 
 .blue {
-  background-color: colors.$blue;
+  background-color: var(---blue);
 }

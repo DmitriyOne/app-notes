@@ -1,0 +1,29 @@
+html[data-theme='light'] {
+  ---bg: #fafafa;
+  ---text: #000;
+  ---gray: #b9b9b9;
+  ---itemBorder: #fbc436;
+  ---itemBg: #ffe5a2;
+  ---itemDeletSvg:#ff4848;
+
+  ---yellow: #deba0c;
+  ---red:#ff7070;
+  ---green: #49e065;
+  ---blue: #0091ff;
+  ---textBlack: #000;
+}
+
+html[data-theme='dark'] {
+  ---bg: #181e24;
+  ---text: #fff;
+  ---gray: #eee;
+  ---itemBorder: #fefefe;
+  ---itemBg: #c59b30;
+  ---itemDeletSvg:#000;
+
+  ---yellow: #deba0c;
+  ---red:#ff7070;
+  ---green: #49e065;
+  ---blue: #0091ff;
+  ---textBlack: #000;
+}

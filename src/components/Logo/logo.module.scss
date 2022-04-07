@@ -1,13 +1,4 @@
-@use '../../styles/colors.scss';
-
 .logo {
   font-size: 32px;
-}
-
-.light {
-  color: colors.$white;
-}
-
-.dark {
-  color: colors.$black;
+  color: var(---textBlack);
 }

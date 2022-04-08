@@ -25,9 +25,9 @@ export const NoteList: React.FunctionComponent = () => {
       {loading
         && <Loader />
       }
-      {notNote
+      {/* {notNote
         && <NoNotes />
-      }
+      } */}
       <Note
         notes={notes}
         onRemove={remove}

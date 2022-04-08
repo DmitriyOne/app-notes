@@ -1,26 +1,17 @@
-import classNames from 'classnames';
 import * as React from 'react';
-import { ETheme } from '../../enums';
+import { Link } from 'react-router-dom';
+
+import { ROUTES } from '../../constants';
 
 import styles from './logo.module.scss';
 
-interface IProps {
-  color?: keyof typeof ETheme
-}
-
-export const Logo: React.FunctionComponent<IProps> = ({
-  color = 'dark',
-}) => {
-
-  const className = classNames(styles.logo, {
-    [styles.light]: color === 'light',
-    [styles.dark]: color === 'dark',
-  })
-  return (
-    <>
-      <h1 className={className}>
-        React Note
-      </h1>
-    </>
-  )
-};
+export const Logo: React.FunctionComponent = () => (
+  <>
+    <Link
+      to={ROUTES.HOME}
+      className={styles.logo}
+    >
+      React Note
+    </Link>
+  </>
+)

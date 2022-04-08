@@ -1,4 +1,7 @@
+import * as React from 'react';
 import { FunctionComponent } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
 import { MdDeleteForever } from "react-icons/md";
 import { IFirebaseNote } from '../../interfaces';
 
@@ -15,33 +18,41 @@ export const Note: FunctionComponent<IProps> = ({
   onRemove,
   valueTitle = '',
 }) => (
-  <ul className={styles.component}>
+  <TransitionGroup
+    component='ul'
+    className={styles.component}
+  >
     {notes.filter(note => {
       return (
         note.title!.toLowerCase().includes(valueTitle!.toLowerCase())
       )
     }).map((note, idx) => {
       return (
-        <li
-          key={idx + 1}
-          className={styles.item}
+        <CSSTransition
+          timeout={500}
+          classNames={'note'}
+          key={note.id}
         >
-          <span>
-            {idx + 1 + ')'}
-            &nbsp;
-            {note.title}
-            <time className={styles.date}>
-              {note.date}
-            </time>
-          </span>
-          <button
-            className={styles.delete}
-            onClick={() => onRemove!(note.id)}
+          <li
+            className={styles.item}
           >
-            <MdDeleteForever className={styles.deleteIcon} />
-          </button>
-        </li>
+            <span>
+              {idx + 1 + ')'}
+              &nbsp;
+              {note.title}
+              <time className={styles.date}>
+                {note.date}
+              </time>
+            </span>
+            <button
+              className={styles.delete}
+              onClick={() => onRemove!(note.id)}
+            >
+              <MdDeleteForever className={styles.deleteIcon} />
+            </button>
+          </li>
+        </CSSTransition>
       )
     })}
-  </ul>
+  </TransitionGroup>
 )

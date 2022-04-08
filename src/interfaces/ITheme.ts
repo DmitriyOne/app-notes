@@ -1,6 +1,6 @@
 import { ETheme } from "../enums";
 
 export interface ITheme {
-  theme?: string
+  theme?: keyof typeof ETheme
   setTheme?: () => void
 }

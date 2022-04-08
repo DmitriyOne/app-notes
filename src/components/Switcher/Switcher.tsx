@@ -9,8 +9,6 @@ export const Switcher: React.FunctionComponent = () => {
   const { theme, setTheme } = useTheme()
 
   const handlerTheme = () => {
-    console.log(theme);
-
     if (theme === 'light') {
       setTheme('dark')
     } else if (theme === 'dark') {

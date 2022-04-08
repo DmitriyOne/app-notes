@@ -1,9 +1,10 @@
-import classNames from 'classnames';
 import * as React from 'react';
-
-import styles from './alert.module.scss'
+import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group'
 
 import { AlertContext } from '../../context/alert/alertContext';
+
+import styles from './alert.module.scss'
 
 interface IProps {
   text?: string
@@ -12,16 +13,27 @@ interface IProps {
 export const Alert: React.FunctionComponent<IProps> = ({
   text,
 }) => {
-  const { type } = React.useContext(AlertContext)
+  const { type, visible } = React.useContext(AlertContext)
+  const nodeRef = React.useRef(null);
 
-  const className = classNames(styles.alert, {
+  const className = classNames(styles.component, 'alert', {
     [styles.green]: type === 'green',
     [styles.red]: type === 'red',
   })
 
   return (
-    <>
-      <div className={className}>
+    <CSSTransition
+      in={visible}
+      timeout={{
+        enter: 350,
+        exit: 200
+      }}
+      classNames={'alert'}
+      mountOnEnter
+      unmountOnExit
+      nodeRef={nodeRef}
+    >
+      <div className={className} ref={nodeRef}>
         <strong className={styles.text}>
           Внимание!
         </strong>
@@ -29,6 +41,6 @@ export const Alert: React.FunctionComponent<IProps> = ({
           {text}
         </span>
       </div>
-    </>
+    </CSSTransition>
   )
 };

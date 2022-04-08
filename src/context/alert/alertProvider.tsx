@@ -20,19 +20,16 @@ export const AlertContextProvider: React.FunctionComponent<IAlertProps> = ({
     setAlertType(type)
     setAlertOpen(true)
   }
-
   const closeAlert = () => setAlertOpen(false)
-
   return (
     <AlertContext.Provider value={{
       text: alertText,
       show: openAlert,
       hide: closeAlert,
-      type: alertType
+      type: alertType,
+      visible: alertOpen
     }}>
-      {alertOpen
-        && <Alert text={alertText} />
-      }
+      <Alert text={alertText} />
       {children}
     </AlertContext.Provider>
   )

@@ -1,4 +1,5 @@
 @use './styles/mixins.scss';
+@use './styles/animates.scss';
 @import './styles/colors.css';
 
 *,
@@ -87,4 +88,23 @@ button {
   margin: 50px 0;
 }
 
-.notes-section {}
+// ANIMATIONS
+.alert-enter {
+  opacity: 0;
+}
+
+.alert-enter-active {
+  animation: alert-visible 350ms ease-out forwards;
+}
+
+.alert-exit-active {
+  animation: alert-hidden 200ms ease-out forwards;
+}
+
+.note-enter-active {
+  animation: note 500ms ease-in alternate-reverse;
+}
+
+.note-exit-active {
+  animation: note 500ms ease-out forwards;
+}

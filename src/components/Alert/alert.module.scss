@@ -1,6 +1,6 @@
 @use '../../styles/mixins.scss';
 
-.alert {
+.component {
   @include mixins.fluidMaxSize(300);
   display: block;
   position: fixed;
@@ -28,4 +28,17 @@
 
 .blue {
   background-color: var(---blue);
+}
+
+.alert-enter {
+  opacity: 0;
+}
+
+.alert-enter-active {
+  transition: opacity 1s ease-out;
+  opacity: 1;
+}
+.alert-exit-active {
+  transition: opacity 1s ease-out;
+  opacity: 1;
 }

@@ -17,13 +17,16 @@ export const Switcher: React.FunctionComponent = () => {
   }
 
   return (
-    <div className={styles.component}>
-      <Input
-        inputSize='auto'
-        componentClassName={styles.checkbox}
-        type='checkbox'
-        onChange={handlerTheme}
-      />
-    </div>
+    <>
+      <div className={styles.component}>
+          <Input
+            inputSize='auto'
+            type='checkbox'
+            onChange={handlerTheme}
+            isCheckTheme
+            id='checkbox'
+          />
+      </div>
+    </>
   )
 };

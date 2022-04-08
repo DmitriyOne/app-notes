@@ -1,4 +1,3 @@
-@use '../../styles/colors.scss';
 @use '../../styles/mixins.scss';
 
 .menu {
@@ -6,6 +5,8 @@
 }
 
 .menuItem {
+  color: var(---textBlack);
+  transition: color .4s;
   padding: 0 10px;
   &:first-child {
     padding-left: 0;

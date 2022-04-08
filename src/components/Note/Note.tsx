@@ -1,4 +1,7 @@
+import * as React from 'react';
 import { FunctionComponent } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
 import { MdDeleteForever } from "react-icons/md";
 import { IFirebaseNote } from '../../interfaces';
 
@@ -7,35 +10,49 @@ import styles from './note.module.scss';
 interface IProps {
   notes: IFirebaseNote[]
   onRemove?: (id: string) => void
+  valueTitle?: string
 }
 
 export const Note: FunctionComponent<IProps> = ({
   notes,
-  onRemove
+  onRemove,
+  valueTitle = '',
 }) => (
-  <ul className={styles.component}>
-    {notes.map((note, idx) => {
+  <TransitionGroup
+    component='ul'
+    className={styles.component}
+  >
+    {notes.filter(note => {
       return (
-        <li
-          key={idx + 1}
-          className={styles.item}
+        note.title!.toLowerCase().includes(valueTitle!.toLowerCase())
+      )
+    }).map((note, idx) => {
+      return (
+        <CSSTransition
+          timeout={500}
+          classNames={'note'}
+          key={note.id}
         >
-          <span>
-            {idx + 1 + ')'}
-            &nbsp;
-            {note.title}
-            <time className={styles.date}>
-              {note.date}
-            </time>
-          </span>
-          <button
-            className={styles.delete}
-            onClick={() => onRemove!(note.id)}
+          <li
+            className={styles.item}
           >
-            <MdDeleteForever className={styles.deleteIcon} />
-          </button>
-        </li>
+            <span>
+              {idx + 1 + ')'}
+              &nbsp;
+              {note.title}
+              <time className={styles.date}>
+                {note.date}
+              </time>
+            </span>
+            <button
+              className={styles.delete}
+              onClick={() => onRemove!(note.id)}
+            >
+              <MdDeleteForever className={styles.deleteIcon} />
+            </button>
+          </li>
+        </CSSTransition>
       )
     })}
-  </ul>
+  </TransitionGroup>
 )

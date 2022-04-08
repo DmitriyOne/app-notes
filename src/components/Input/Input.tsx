@@ -9,7 +9,11 @@ interface IProps {
   placeholder?: string
   id?: string
   value?: string
-  onChange?: (event: { target: HTMLInputElement}) => void
+  onChange?: (event: { target: HTMLInputElement }) => void
+  inputSize?: 'l' | 'auto'
+  componentClassName?: string
+  inputClassName?: string
+  isCheckTheme?: boolean
 }
 
 export const Input: FunctionComponent<IProps> = ({
@@ -18,24 +22,28 @@ export const Input: FunctionComponent<IProps> = ({
   placeholder,
   id,
   value,
-  onChange
+  onChange,
+  componentClassName,
+  inputSize = 'l',
+  inputClassName,
+  isCheckTheme,
 }) => {
-  // const [value, setValue] = useState('')
-
-  // const handleValue = (event: { target: HTMLInputElement; }) => {
-  //   setValue(event.target.value)
-  // }
-
   const labelClassName = classNames(styles.label, {
-    [styles.labelCenter]: value === ''
+    [styles.labelCenter]: value === '',
+    [styles.switch]: isCheckTheme
+  })
+  const inputClass = classNames(styles.input, inputClassName, {
+    [styles.inputL]: inputSize === 'l',
+    [styles.inputAuto]: inputSize === 'auto',
+    [styles.switchInput]: isCheckTheme,
   })
 
   return (
     <>
-      <div className={styles.component}>
+      <div className={classNames(styles.component, componentClassName)}>
         <input
           id={id}
-          className={styles.input}
+          className={inputClass}
           type={type}
           placeholder={placeholder}
           onChange={onChange}
@@ -46,6 +54,7 @@ export const Input: FunctionComponent<IProps> = ({
           className={labelClassName}
         >
           {label}
+          {isCheckTheme && <i className={styles.switchIcon} />}
         </label>
       </div>
     </>

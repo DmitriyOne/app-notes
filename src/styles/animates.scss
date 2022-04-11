@@ -33,16 +33,35 @@
   }
 }
 
-@keyframes note {
+@keyframes note-delete {
   0% {
     transform: translateX(0);
   }
+
   30% {
     opacity: .7;
     transform: translateX(60px);
   }
+
   100% {
     opacity: 0;
-    transform: translateX(-200px);
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes note-add {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  50% {
+    opacity: .7;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }

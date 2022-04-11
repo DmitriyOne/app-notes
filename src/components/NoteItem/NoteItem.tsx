@@ -9,11 +9,11 @@ import styles from './note.module.scss';
 
 interface IProps {
   notes: IFirebaseNote[]
-  onRemove?: (id: string) => void
+  onRemove?: (id: string | undefined) => void
   valueTitle?: string
 }
 
-export const Note: FunctionComponent<IProps> = ({
+export const NoteItem: FunctionComponent<IProps> = ({
   notes,
   onRemove,
   valueTitle = '',
@@ -29,7 +29,10 @@ export const Note: FunctionComponent<IProps> = ({
     }).map((note, idx) => {
       return (
         <CSSTransition
-          timeout={500}
+          timeout={{
+            enter: 800,
+            exit: 500
+          }}
           classNames={'note'}
           key={note.id}
         >

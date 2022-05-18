@@ -1,5 +1,6 @@
 html[data-theme='light'] {
   ---bg: #fafafa;
+  ---bg-header: #FFDF6C;
   ---text: #000;
   ---gray: #b9b9b9;
   ---itemBorder: #fbc436;
@@ -15,6 +16,7 @@ html[data-theme='light'] {
 
 html[data-theme='dark'] {
   ---bg: #181e24;
+  ---bg-header: #D3AA56;
   ---text: #fff;
   ---gray: #eee;
   ---itemBorder: #fefefe;

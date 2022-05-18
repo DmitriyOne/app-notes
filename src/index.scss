@@ -102,9 +102,9 @@ button {
 }
 
 .note-enter-active {
-  animation: note 500ms ease-in alternate-reverse;
+  animation: note-add 800ms ease-out forwards;
 }
 
 .note-exit-active {
-  animation: note 500ms ease-out forwards;
+  animation: note-delete 500ms ease-out forwards;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { FormCreateNote, FormSearchNode, NoteList } from './components';
+import { FormCreateNote, FormSearchNode, NoteItems } from './components';
 
 const Home: React.FunctionComponent = () => (
   <div className='container'>
@@ -15,7 +15,7 @@ const Home: React.FunctionComponent = () => (
     </section>
     <hr className='hr' />
     <section className='notes-section'>
-      <NoteList />
+      <NoteItems />
     </section>
   </div>
 )

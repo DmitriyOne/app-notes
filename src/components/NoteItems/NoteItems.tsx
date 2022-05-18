@@ -1,36 +1,36 @@
 import * as React from 'react';
 
-import { Loader, NoNotes, Note } from '../../components';
+import { Loader, NoNotes, NoteItem } from '../../components';
 import { FirebaseContext, SearchContext } from '../../context';
 
-export const NoteList: React.FunctionComponent = () => {
-  const { loading, fetch, notes, remove } = React.useContext(FirebaseContext)
+export const NoteItems: React.FunctionComponent = () => {
+  const firebase = React.useContext(FirebaseContext)
   const { value } = React.useContext(SearchContext)
   const [notNote, setNotNote] = React.useState(false)
 
   React.useEffect(() => {
-    fetch!()
+    firebase.fetch()
   }, [])
 
   React.useEffect(() => {
-    if (notes.length === 0) {
+    if (firebase.emtry && !firebase.loading) {
       setNotNote(true)
     } else {
       setNotNote(false)
     }
-  }, [notes])
+  })
 
   return (
     <>
-      {loading
+      {firebase.loading
         && <Loader />
       }
       {notNote
         && <NoNotes />
       }
-      <Note
-        notes={notes}
-        onRemove={remove}
+      <NoteItem
+        notes={firebase.notes}
+        onRemove={firebase.remove}
         valueTitle={value}
       />
     </>

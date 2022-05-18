@@ -1,13 +1,16 @@
 export interface IFirebaseNote {
-  id?: any
+  id?: string
+  index?: number
   title?: string
   date?: string
+  onRemove?: (id: string | undefined) => void
 }
 
 export interface IFirebase {
   loading?: boolean
-  notes: IFirebaseNote[]
-  fetch?: () => void
-  add?: (note: IFirebaseNote) => void
-  remove?: (id: string) => void
+  notes?: IFirebaseNote[]
+  fetch?: () => Promise<void>
+  add?: (note: IFirebaseNote) => Promise<void>
+  remove?: (id: string | undefined) => Promise<void>
+  emtry?: boolean
 }

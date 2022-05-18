@@ -6,8 +6,8 @@ import { AlertContext, FirebaseContext } from '../../context';
 
 export const FormCreateNote: React.FunctionComponent = () => {
   const [value, setValue] = React.useState('')
-  const { add } = React.useContext(FirebaseContext)
-  let { show, hide, visible } = React.useContext(AlertContext)
+  const firebase = React.useContext(FirebaseContext)
+  const alert = React.useContext(AlertContext)
 
   const handlerValue = (event: { target: HTMLInputElement }) => {
     setValue(event.target.value)
@@ -18,25 +18,29 @@ export const FormCreateNote: React.FunctionComponent = () => {
 
     const handlerTimer = () => {
       const alertTimeout = setTimeout(() => {
-        visible = false
-        hide!()
+        alert.visible = false
+        alert.hide()
         clearTimeout(alertTimeout)
       }, 3000)
     }
 
     if (value.trim()) {
       const note = {
-        title: value,
+        title: value.trim(),
         date: moment().format('MM/YY, h:mm:ss')
       }
-      add!(note)
-      visible = true
-      show!('Заметка была создана', 'green')
+      firebase.add(note).then(() => {
+        alert.visible = true
+        alert.show('Заметка была создана', 'green')
+      }).catch(() => {
+        alert.visible = true
+        alert.show('Что-то пошло не так', 'red')
+      })
       setValue('')
       handlerTimer()
     } else {
-      visible = true
-      show!('Введите название заметки', 'red')
+      alert.visible = true
+      alert.show('Введите название заметки', 'red')
       handlerTimer()
     }
   }

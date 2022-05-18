@@ -9,12 +9,14 @@ const url = process.env.REACT_APP_DB_URL
 export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ children, notes }) => {
   const [loader, setLoader] = useState(false)
   const [items, setItems] = useState(notes)
+  const [emptyNotes, setEmptyNotes] = useState(false)
 
   const fetchNotes = async () => {
     setLoader(true)
     const res = await axios.get(`${url}/notes.json`)
     if (res.data === null) {
       setLoader(false)
+      setEmptyNotes(true)
     } else {
       const notesArray = Object.keys(res.data).map(key => {
         return {
@@ -29,19 +31,29 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
   }
 
   const addNote = async (note: IFirebaseNote) => {
-    const res = await axios.post(`${url}/notes.json`, note)
-    const newNote = {
-      ...note,
-      id: res.data.name
+    try {
+      const res = await axios.post(`${url}/notes.json`, note)
+      const newNote = {
+        ...note,
+        id: res.data.name
+      }
+      setItems([...items, newNote])
+      setLoader(false)
+      setEmptyNotes(false)
+    } catch (e: any) {
+      throw new Error(e.message)
     }
-    setItems([...items, newNote])
-    setLoader(false)
   }
 
-  const removeNote = async (id: string) => {
+  const removeNote = async (id: string | undefined) => {
     await axios.delete(`${url}/notes/${id}.json`)
     const removeNotes = items.filter(note => note.id !== id)
     setItems(removeNotes)
+    const res = await axios.get(`${url}/notes.json`)
+    console.log(res.data);
+    if (res.data === null) {
+      setEmptyNotes(true)
+    }
   }
 
   return (
@@ -51,6 +63,7 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
       fetch: fetchNotes,
       add: addNote,
       remove: removeNote,
+      emtry: emptyNotes
     }}>
       {children}
     </FirebaseContext.Provider>

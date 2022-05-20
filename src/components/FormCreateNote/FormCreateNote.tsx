@@ -32,16 +32,16 @@ export const FormCreateNote: React.FunctionComponent = () => {
       }
       firebase.add(note).then(() => {
         alert.visible = true
-        alert.show('Заметка была создана', 'green')
+        alert.show('Your note has been created', 'ready')
       }).catch(() => {
         alert.visible = true
-        alert.show('Что-то пошло не так', 'red')
+        alert.show('An error has occurred on the server', 'error')
       })
       setValue('')
       handlerTimer()
     } else {
       alert.visible = true
-      alert.show('Введите название заметки', 'red')
+      alert.show('Please enter a note title', 'warning')
       handlerTimer()
     }
   }

@@ -10,7 +10,7 @@ export const NoteItems: React.FunctionComponent = () => {
   const [notNote, setNotNote] = React.useState(false)
 
   React.useEffect(() => {
-    firebase.fetch()
+    firebase.fetch()  
   }, [])
 
   React.useEffect(() => {

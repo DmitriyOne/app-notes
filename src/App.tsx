@@ -15,21 +15,23 @@ import Create from './Create';
 const App: React.FunctionComponent = () => {
   const firebase = React.useContext(FirebaseContext)
   const { theme, setTheme } = useTheme()
-  
+
   return (
     <SearchContextProvider>
       <FirebaseContextProvider notes={firebase.notes}>
         <AlertContextProvider>
           <BrowserRouter>
-            <Header />
-            <main className='main'>
-              <Routes>
-                <Route path={ROUTES.HOME} element={<Home />} />
-                <Route path={ROUTES.ABOUT_US} element={<About />} />
-                <Route path={ROUTES.CREATE_NODE} element={<Create />} />
-              </Routes>
-            </main>
-            <Footer />
+            <div className='fullscreen'>
+              <Header />
+              <main className='main'>
+                <Routes>
+                  <Route path={ROUTES.HOME} element={<Home />} />
+                  <Route path={ROUTES.ABOUT_US} element={<About />} />
+                  <Route path={ROUTES.CREATE_NODE} element={<Create />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
           </BrowserRouter>
         </AlertContextProvider>
       </FirebaseContextProvider>

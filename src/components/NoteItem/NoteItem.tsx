@@ -35,7 +35,7 @@ export const NoteItem: FunctionComponent<IProps> = ({
         <CSSTransition
           timeout={{
             enter: 500,
-            exit: 400
+            exit: 500
           }}
           classNames={'note'}
           key={note.id}

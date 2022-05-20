@@ -1,4 +1,5 @@
 export enum EColor {
-  red = 'red',
-  green = 'green'
+  ready = 'red',
+  error = 'green',
+  warning = 'warning',
 }

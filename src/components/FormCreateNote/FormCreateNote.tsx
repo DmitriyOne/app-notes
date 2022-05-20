@@ -27,7 +27,8 @@ export const FormCreateNote: React.FunctionComponent = () => {
     if (value.trim()) {
       const note = {
         title: value.trim(),
-        date: moment().format('MM/YY, h:mm:ss')
+        date: moment().format('MM/YY, h:mm:ss'),
+        checked: false,
       }
       firebase.add(note).then(() => {
         alert.visible = true
@@ -46,13 +47,15 @@ export const FormCreateNote: React.FunctionComponent = () => {
   }
 
   return (
-    <form onSubmit={handlerSubmit}>
+    <form className='relative' onSubmit={handlerSubmit}>
       <Input
         type='text'
         label='Create new note'
         id='create'
         value={value}
         onChange={handlerValue}
+        isButtonIcon
+        idSvg='add'
       />
     </form>
   )

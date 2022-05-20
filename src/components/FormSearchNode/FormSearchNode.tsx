@@ -11,13 +11,15 @@ export const FormSearchNode: React.FunctionComponent = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='relative' onSubmit={onSubmit}>
       <Input
         type='text'
         label='Search note'
         id='search'
         value={value || ''}
         onChange={handlerValue}
+        isButtonIcon
+        idSvg='search'
       />
     </form>
   )

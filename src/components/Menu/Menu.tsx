@@ -24,6 +24,13 @@ export const Menu: React.FunctionComponent = () => {
             About us
           </ActiveLink>
         </li>
+        <li className={styles.menuItem}>
+          <ActiveLink
+            to={ROUTES.CREATE_NODE}
+          >
+            Create note
+          </ActiveLink>
+        </li>
       </ul>
     </nav >
   )

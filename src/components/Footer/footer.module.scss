@@ -1,0 +1,41 @@
+@use '../../styles/mixins.scss';
+
+.component {
+  width: 100%;
+}
+
+.row {
+  @include mixins.flex-spb;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  border-top: 1px solid #000;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 170%;
+  color: var(---text);
+}
+
+.socials {
+  display: flex;
+}
+
+.link {
+  @include mixins.flex-center;
+  width: 65px;
+  height: 65px;
+  border-radius: 15px;
+  background: #FFBC36;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+  margin-right: 30px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+  
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -33,7 +33,6 @@
 .label {
   color: var(---gray);
   font-size: 14px;
-  text-transform: uppercase;
   position: absolute;
   left: 15px;
   top: 0;
@@ -56,6 +55,10 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   background-color: transparent;
+  position: relative;
+  top: 0;
+  transform: none;
+  left: 0;
 }
 
 .switchInput {
@@ -110,4 +113,61 @@
   &:after {
     transform: translate3d(20px, 2px, 0);
   }
+}
+
+.buttonIcon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+}
+
+.inputPadding {
+  padding-right: 50px;
+}
+
+.inputCheckbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.labelCheckbox {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  transform: none;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid var(---gray);
+}
+
+.labelCheckbox::before {
+  content: '';
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border-radius: 5px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+.labelChecked {
+  border-color: var(---green);
+}
+
+.labelChecked::before {
+  border-color: transparent;
+  background-color: #fff;
+  background-image: url('./icons/ready.svg');
 }

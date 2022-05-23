@@ -3,6 +3,8 @@ export interface IFirebaseNote {
   index?: number
   title?: string
   date?: string
+  finish?: string
+  author?: string
   onRemove?: (id: string | undefined) => void
   checked?: boolean
 }

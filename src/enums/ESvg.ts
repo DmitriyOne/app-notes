@@ -10,4 +10,6 @@ export enum ESvg {
   instagram = 'instagram',
   light = 'light',
   dark = 'dark',
+  arrow = 'arrow',
+  sad = 'sad',
 }

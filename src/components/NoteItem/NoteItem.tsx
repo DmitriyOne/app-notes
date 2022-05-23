@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import classNames from 'classnames';
 
@@ -30,6 +29,8 @@ export const NoteItem: FunctionComponent<IProps> = ({
         note.title!.toLowerCase().includes(valueTitle!.toLowerCase())
       )
     }).map(note => {
+      console.log(note.finish);
+      
       const textLineThrough = note.checked ? styles.lineThrough : '';
       return (
         <CSSTransition
@@ -59,7 +60,6 @@ export const NoteItem: FunctionComponent<IProps> = ({
                   />
                 </span>
               </span>
-
               <span className={classNames(styles.descContainer, textLineThrough)}>
                 Data create:
                 <time className={styles.descText}>
@@ -68,14 +68,14 @@ export const NoteItem: FunctionComponent<IProps> = ({
               </span>
               <span className={classNames(styles.descContainer, textLineThrough)}>
                 Data finish:
-                <time className={styles.descText}>
-                  coming soon
-                </time>
+                <span className={styles.descText}>
+                  {note.finish}
+                </span>
               </span>
               <span className={classNames(styles.descContainer, textLineThrough)}>
                 Author:
                 <span className={styles.descText}>
-                  coming soon
+                  {note.author}
                 </span>
               </span>
             </span>

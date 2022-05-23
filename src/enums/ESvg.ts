@@ -8,4 +8,6 @@ export enum ESvg {
   youtube = 'youtube',
   telegram = 'telegram',
   instagram = 'instagram',
+  light = 'light',
+  dark = 'dark',
 }

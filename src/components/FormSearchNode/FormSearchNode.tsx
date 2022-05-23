@@ -3,6 +3,8 @@ import { SearchContext } from '../../context';
 
 import { Input } from '../Input';
 
+import styles from './form-search-note.module.scss'
+
 export const FormSearchNode: React.FunctionComponent = () => {
   const { value, handlerValue } = React.useContext(SearchContext)
 
@@ -20,6 +22,7 @@ export const FormSearchNode: React.FunctionComponent = () => {
         onChange={handlerValue}
         isButtonIcon
         idSvg='search'
+        svgClassName={styles.svgWrapper}
       />
     </form>
   )

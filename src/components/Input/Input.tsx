@@ -1,7 +1,9 @@
-import { FunctionComponent, InputHTMLAttributes } from 'react';
+import { FunctionComponent, InputHTMLAttributes, useState } from 'react';
 import classNames from 'classnames';
 
 import { Button, GeneratorSvg } from '../../components';
+import { useTheme } from '../../hooks';
+
 import { ESvg } from '../../enums/ESvg';
 
 import styles from './input.module.scss'
@@ -19,8 +21,10 @@ interface IProps {
   inputClassName?: string
   isCheckTheme?: boolean
   isButtonIcon?: boolean
-  idSvg?: keyof typeof ESvg 
-  isInputCheckbox?: boolean,
+  idSvg?: keyof typeof ESvg
+  svgClassName?: string
+  isInputCheckbox?: boolean
+  isCheck?: boolean
 }
 
 export const Input: FunctionComponent<IProps> = ({
@@ -36,9 +40,20 @@ export const Input: FunctionComponent<IProps> = ({
   isCheckTheme,
   isButtonIcon,
   idSvg,
+  svgClassName,
   isLabelChecked,
   isInputCheckbox,
+  isCheck,
 }) => {
+  const { theme } = useTheme()
+  const [click, setClick] = useState(theme === 'dark' ? false : true)
+
+  const onClick = () => {
+    setClick(prevState => !prevState)
+  }
+
+  const switchSvg = click ? 'light' : 'dark';
+
   const labelClassName = classNames(styles.label, {
     [styles.labelCenter]: value === '',
     [styles.switch]: isCheckTheme,
@@ -53,11 +68,9 @@ export const Input: FunctionComponent<IProps> = ({
     [styles.inputCheckbox]: isInputCheckbox,
   })
 
-  // console.log(isLabelChecked);
-
   return (
     <>
-      <div className={classNames(styles.component, componentClassName)}>
+      <div className={classNames(styles.component, componentClassName)} >
         <input
           id={id}
           className={inputClass}
@@ -65,18 +78,26 @@ export const Input: FunctionComponent<IProps> = ({
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          defaultChecked={isCheck}
         />
         <label
           htmlFor={id}
           className={labelClassName}
+          onClick={onClick}
         >
           {label}
-          {isCheckTheme && <i className={styles.switchIcon} />}
+          {isCheckTheme &&
+            <span className={styles.switchWrapper}>
+              <span className={styles.switchIcon}>
+                <GeneratorSvg id={switchSvg} />
+              </span>
+            </span>
+          }
         </label>
       </div>
       {isButtonIcon &&
         <Button
-          className={styles.buttonIcon}
+          className={classNames(svgClassName, styles.buttonIcon)}
           type='submit'
         >
           <GeneratorSvg id={idSvg} />

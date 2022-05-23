@@ -4,6 +4,8 @@ import moment from 'moment';
 import { Input } from '../../components';
 import { AlertContext, FirebaseContext } from '../../context';
 
+import styles from './form-create-note.module.scss'
+
 export const FormCreateNote: React.FunctionComponent = () => {
   const [value, setValue] = React.useState('')
   const firebase = React.useContext(FirebaseContext)
@@ -56,6 +58,7 @@ export const FormCreateNote: React.FunctionComponent = () => {
         onChange={handlerValue}
         isButtonIcon
         idSvg='add'
+        svgClassName={styles.svgWrapper}
       />
     </form>
   )

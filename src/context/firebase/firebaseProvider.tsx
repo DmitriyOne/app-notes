@@ -21,9 +21,11 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
     } else {
       const notesArray = Object.keys(res.data).map(key => {
         return {
+          id: key,
           title: res.data[key].title,
           date: res.data[key].date,
-          id: key,
+          finish: res.data[key].finish,
+          author: res.data[key].author,
           checked: res.data[key].checked
         }
       })
@@ -66,9 +68,11 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
     const res = await axios.get(`${url}/notes.json`)
     const notesArray = Object.keys(res.data).map(key => {
       return {
+        id: key,
         title: res.data[key].title,
         date: res.data[key].date,
-        id: key,
+        finish: res.data[key].finish,
+        author: res.data[key].author,
         checked: res.data[key].checked
       }
     })

@@ -14,6 +14,7 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
   const fetchNotes = async () => {
     setLoader(true)
     const res = await axios.get(`${url}/notes.json`)
+
     if (res.data === null) {
       setLoader(false)
       setEmptyNotes(true)
@@ -22,7 +23,8 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
         return {
           title: res.data[key].title,
           date: res.data[key].date,
-          id: key
+          id: key,
+          checked: res.data[key].checked
         }
       })
       setLoader(false)
@@ -35,7 +37,7 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
       const res = await axios.post(`${url}/notes.json`, note)
       const newNote = {
         ...note,
-        id: res.data.name
+        id: res.data.name,
       }
       setItems([...items, newNote])
       setLoader(false)
@@ -50,10 +52,27 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
     const removeNotes = items.filter(note => note.id !== id)
     setItems(removeNotes)
     const res = await axios.get(`${url}/notes.json`)
-    console.log(res.data);
     if (res.data === null) {
       setEmptyNotes(true)
     }
+  }
+
+  const checkedNote = async (note: IFirebaseNote) => {
+    await axios.patch(`${url}/notes/${note.id}.json`, {
+      ...note,
+      checked: !note.checked
+    })
+
+    const res = await axios.get(`${url}/notes.json`)
+    const notesArray = Object.keys(res.data).map(key => {
+      return {
+        title: res.data[key].title,
+        date: res.data[key].date,
+        id: key,
+        checked: res.data[key].checked
+      }
+    })
+    setItems(notesArray)
   }
 
   return (
@@ -63,7 +82,8 @@ export const FirebaseContextProvider: React.FunctionComponent<IFirebase> = ({ ch
       fetch: fetchNotes,
       add: addNote,
       remove: removeNote,
-      emtry: emptyNotes
+      empty: emptyNotes,
+      checked: checkedNote,
     }}>
       {children}
     </FirebaseContext.Provider>

@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group'
 import { AlertContext } from '../../context/alert/alertContext';
 
 import styles from './alert.module.scss'
+import { GeneratorSvg } from '../Generator';
 
 interface IProps {
   text?: string
@@ -17,9 +18,11 @@ export const Alert: React.FunctionComponent<IProps> = ({
   const nodeRef = React.useRef(null);
 
   const className = classNames(styles.component, 'alert', {
-    [styles.green]: type === 'green',
-    [styles.red]: type === 'red',
+    [styles.green]: type === 'ready',
+    [styles.red]: type === 'error',
+    [styles.warning]: type === 'warning',
   })
+
 
   return (
     <CSSTransition
@@ -34,12 +37,17 @@ export const Alert: React.FunctionComponent<IProps> = ({
       nodeRef={nodeRef}
     >
       <div className={className} ref={nodeRef}>
-        <strong className={styles.text}>
-          Внимание!
-        </strong>
-        <span className={styles.text}>
-          {text}
+        <span className={styles.iconWrapper}>
+          <GeneratorSvg id={type} />
         </span>
+        <div className={styles.contentWrapper}>
+          <h5 className={styles.title}>
+            Attention!
+          </h5>
+          <span className={styles.text}>
+            {text}
+          </span>
+        </div>
       </div>
     </CSSTransition>
   )

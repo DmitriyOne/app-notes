@@ -4,6 +4,7 @@ export interface IFirebaseNote {
   title?: string
   date?: string
   onRemove?: (id: string | undefined) => void
+  checked?: boolean
 }
 
 export interface IFirebase {
@@ -12,5 +13,6 @@ export interface IFirebase {
   fetch?: () => Promise<void>
   add?: (note: IFirebaseNote) => Promise<void>
   remove?: (id: string | undefined) => Promise<void>
-  emtry?: boolean
+  empty?: boolean
+  checked?: (note: IFirebaseNote) => Promise<void>
 }

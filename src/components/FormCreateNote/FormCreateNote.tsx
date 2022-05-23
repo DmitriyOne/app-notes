@@ -4,6 +4,8 @@ import moment from 'moment';
 import { Input } from '../../components';
 import { AlertContext, FirebaseContext } from '../../context';
 
+import styles from './form-create-note.module.scss'
+
 export const FormCreateNote: React.FunctionComponent = () => {
   const [value, setValue] = React.useState('')
   const firebase = React.useContext(FirebaseContext)
@@ -27,32 +29,36 @@ export const FormCreateNote: React.FunctionComponent = () => {
     if (value.trim()) {
       const note = {
         title: value.trim(),
-        date: moment().format('MM/YY, h:mm:ss')
+        date: moment().format('MM/YY, h:mm:ss'),
+        checked: false,
       }
       firebase.add(note).then(() => {
         alert.visible = true
-        alert.show('Заметка была создана', 'green')
+        alert.show('Your note has been created', 'ready')
       }).catch(() => {
         alert.visible = true
-        alert.show('Что-то пошло не так', 'red')
+        alert.show('An error has occurred on the server', 'error')
       })
       setValue('')
       handlerTimer()
     } else {
       alert.visible = true
-      alert.show('Введите название заметки', 'red')
+      alert.show('Please enter a note title', 'warning')
       handlerTimer()
     }
   }
 
   return (
-    <form onSubmit={handlerSubmit}>
+    <form className='relative' onSubmit={handlerSubmit}>
       <Input
         type='text'
         label='Create new note'
         id='create'
         value={value}
         onChange={handlerValue}
+        isButtonIcon
+        idSvg='add'
+        svgClassName={styles.svgWrapper}
       />
     </form>
   )

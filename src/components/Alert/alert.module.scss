@@ -1,34 +1,75 @@
 @use '../../styles/mixins.scss';
 
 .component {
-  @include mixins.fluidMaxSize(300);
-  display: block;
+  @include mixins.fluidMaxSize(320);
+  display: flex;
+  align-items: center;
   position: fixed;
   top: 50px;
   right: 20px;
   z-index: 99;
-  padding: 15px 20px 20px 20px;
-  border-radius: 12px;
-}
-
-.text {
-  display: block;
-  font-size: 16px;
-  color: var(---textBlack);
-  padding-top: 5px;
+  padding: 25px 25px 30px 25px;
+  border-radius: 16px;
+  border: 2px solid transparent;
 }
 
 .green {
-  background-color: var(---green);
+  background-color: var(---ready-bg);
+  border-color: var(---ready-border);
+  color: var(---ready-text);
+
+  svg path {
+    stroke: var(---ready-icon);
+  }
+
+  .title {
+    color: var(---ready-text);
+  }
+
+  .text {
+    color: var(---ready-text);
+  }
 }
 
 .red {
-  background-color: var(---red);
+  background-color: var(---error-bg);
+  border-color: var(---error-border);
+  color: var(---error-text);
+
+  svg {
+    fill: var(---error-icon);
+  }
+
+  .title {
+    color: var(---error-text);
+  }
+
+  .text {
+    color: var(---error-text);
+  }
 }
 
-.blue {
-  background-color: var(---blue);
+.warning {
+  background-color: var(---warning-bg);
+  border-color: var(---warning-border);
+  color: var(---warning-text);
+
+  svg {
+    fill: var(---warning-icon);
+  }
+
+  .title {
+    color: var(---warning-text);
+  }
+
+  .text {
+    color: var(---warning-text);
+  }
 }
+
+// .blue {
+//   background-color: var(---blue);
+// }
 
 .alert-enter {
   opacity: 0;
@@ -41,4 +82,29 @@
 .alert-exit-active {
   transition: opacity 1s ease-out;
   opacity: 1;
+}
+
+.iconWrapper {
+  display: flex;
+  width: 45px;
+  height: 45px;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 25px;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 100%;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 100%;
 }

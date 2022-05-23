@@ -12,3 +12,5 @@ export * from './NoNotes';
 export * from './NoteItems';
 export * from './FormCreateNote';
 export * from './FormSearchNode';
+export * from './Generator';
+export * from './Button';

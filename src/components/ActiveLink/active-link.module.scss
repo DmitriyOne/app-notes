@@ -1,11 +1,14 @@
 .link {
   display: block;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 20px 15px;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 
   &.active {
-    color: (---textBlack);
-    background-color: var(---yellow);
+    background-color: var(---bg-active-link);
+    border-left-color: var(---border-active-link);
+    border-right-color: var(---border-active-link);
   }
 }

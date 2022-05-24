@@ -1,4 +1,4 @@
-import { FunctionComponent, InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, useState, ForwardedRef, forwardRef, } from 'react';
 import classNames from 'classnames';
 
 import { Button, GeneratorSvg } from '../../components';
@@ -27,7 +27,7 @@ interface IProps {
   isCheck?: boolean
 }
 
-export const Input: FunctionComponent<IProps> = ({
+export const Input = forwardRef (({
   label,
   type = 'text',
   placeholder,
@@ -44,7 +44,7 @@ export const Input: FunctionComponent<IProps> = ({
   isLabelChecked,
   isInputCheckbox,
   isCheck,
-}) => {
+}: IProps, ref: ForwardedRef<HTMLInputElement>) => {
   const { theme } = useTheme()
   const [click, setClick] = useState(theme === 'dark' ? false : true)
 
@@ -79,6 +79,7 @@ export const Input: FunctionComponent<IProps> = ({
           onChange={onChange}
           value={value}
           defaultChecked={isCheck}
+          ref={ref}
         />
         <label
           htmlFor={id}
@@ -105,4 +106,5 @@ export const Input: FunctionComponent<IProps> = ({
       }
     </>
   )
-};
+});
+

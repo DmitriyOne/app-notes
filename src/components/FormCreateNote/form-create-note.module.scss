@@ -10,7 +10,7 @@
   }
 }
 
-.input {
+.inputWrapper {
   margin-bottom: 30px;
 
   &:last-child {
@@ -19,6 +19,7 @@
 }
 
 .button {
+  display: flex !important;
   @include mixins.flex-center;
   @include mixins.fluidMaxSize(150);
   margin-left: auto;

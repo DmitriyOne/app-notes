@@ -14,3 +14,4 @@ export * from './FormCreateNote';
 export * from './FormSearchNode';
 export * from './Generator';
 export * from './Button';
+export * from './Error';

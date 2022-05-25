@@ -27,7 +27,7 @@ interface IProps {
   isCheck?: boolean
 }
 
-export const Input = forwardRef (({
+export const Input = forwardRef(({
   label,
   type = 'text',
   placeholder,

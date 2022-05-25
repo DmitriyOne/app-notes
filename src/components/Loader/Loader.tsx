@@ -5,7 +5,7 @@ import styles from './loader.module.scss'
 export const Loader: React.FunctionComponent = () => {
   return (
     <p className={styles.text}>
-      Идет загрузка...
+      Loading...
     </p>
   )
 };

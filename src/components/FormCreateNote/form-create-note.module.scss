@@ -1,0 +1,50 @@
+@use '../../styles/mixins.scss';
+
+.component {
+  @include mixins.fluidMaxSize(400);
+}
+
+.svgWrapper {
+  svg {
+    fill: var(---yellow-svg-add);
+  }
+}
+
+.input {
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 40px;
+  }
+}
+
+.button {
+  @include mixins.flex-center;
+  @include mixins.fluidMaxSize(150);
+  margin-left: auto;
+  font-size: 18px;
+  line-height: 120%;
+  padding: 15px 10px;
+  background-color: #FFDF6C;
+  border-radius: 10px;
+  transition: all .3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+    background-color: #fad038;
+  }
+}
+
+.arrow {
+  display: block;
+  width: 12px;
+  height: 15px;
+  margin-left: 12px;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

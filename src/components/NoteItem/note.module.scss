@@ -1,50 +1,130 @@
 @use '../../styles/mixins.scss';
 
 .component {
-  display: flex;
-  flex-direction: column;
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .item {
   @include mixins.flex-spb;
-  width: 100%;
-  padding: 20px 30px;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 0 1 315px;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  padding: 30px 20px 15px 35px;
   font-size: 16px;
   font-weight: 600;
-  text-transform: uppercase;
-  border: 2px solid var(---itemBorder);
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  margin-left: 19px;
+  margin-right: 19px;
   border-radius: 20px;
-  background-color: var(---itemBg);
-  color: var(---textBlack);
+  background-color: var(---item-bg);
+  color: var(---text);
+  box-shadow: var(---item-shadow);
   transition:
     border-color .4s,
     background-color .4s;
+}
+
+.wrapper {
+  display: block;
+  width: 100%;
+}
+
+.row {
+  @include mixins.flex-spb;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 170%;
+  font-weight: 500;
+}
+
+.checkboxContainer {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.descContainer {
+  display: block;
+  font-size: 16px;
+  line-height: 170%;
+  font-weight: 300;
+  padding-bottom: 7px;
 
   &:last-child {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 }
 
-.date {
-  display: block;
-  font-size: 12px;
+.descText {
+  padding-left: 15px;
+}
+
+.deleteContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   padding-top: 5px;
-  padding-left: 20px;
-  text-transform: lowercase;
+  border-top: 1px solid var(---item-line);
 }
 
 .delete {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
   cursor: pointer;
+  position: relative;
+
+  &:hover {
+    animation: wobble 0.8s both;
+    animation-delay: 0.2s;
+  }
 }
 
-.deleteIcon {
+.completedBlock {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  fill: var(---itemDeletSvg);
-  @include mixins.theme(fill)
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(---item-completed);
+}
+
+.lineThrough {
+  text-decoration: line-through;
+  color: var(---text);
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(0%) scale(1);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-15px) rotate(-6deg) scale(1.2);
+  }
+  30% {
+    transform: translateX(7px) rotate(6deg) scale(1.2);
+  }
+  45% {
+    transform: translateX(-7px) rotate(-3.6deg) scale(1.2);
+  }
+  60% {
+    transform: translateX(4px) rotate(2.4deg) scale(1.2);
+  }
+  75% {
+    transform: translateX(-3px) rotate(-1.2deg) scale(1.2);
+  }
 }

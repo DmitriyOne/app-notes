@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from "react";
 
 import { SearchContext } from "./searchContext";
 
-export const SearchContextPropvider: FunctionComponent = ({ children }) => {
+export const SearchContextProvider: FunctionComponent = ({ children }) => {
   const [valueSearch, setValueSearch] = useState<string | undefined>()
 
   const getValue = (event: { target: HTMLInputElement }) => {

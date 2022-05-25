@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 
 import { Loader, NoNotes, NoteItem } from '../../components';
@@ -9,11 +10,11 @@ export const NoteItems: React.FunctionComponent = () => {
   const [notNote, setNotNote] = React.useState(false)
 
   React.useEffect(() => {
-    firebase.fetch()
+    firebase.fetch()  
   }, [])
 
   React.useEffect(() => {
-    if (firebase.emtry && !firebase.loading) {
+    if (firebase.empty && !firebase.loading) {
       setNotNote(true)
     } else {
       setNotNote(false)
@@ -31,6 +32,7 @@ export const NoteItems: React.FunctionComponent = () => {
       <NoteItem
         notes={firebase.notes}
         onRemove={firebase.remove}
+        onChecked={firebase.checked}
         valueTitle={value}
       />
     </>
